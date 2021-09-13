@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="nkozlov" id="createTables">
+        <sql>CREATE EXTENSION IF NOT EXISTS "uuid-ossp"</sql>
+        <createTable tableName="appliance">
+            <column name="id" type="UUID" defaultValue="uuid_generate_v4()">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brand" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="numeric(12,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
