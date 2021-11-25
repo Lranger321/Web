@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public boolean login(LoginDTO dto) {
         try {
             Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(dto.getLogin(), dto.getPassword()));
+                    new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(auth);
         } catch (BadCredentialsException ex) {
             ex.printStackTrace();
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     public boolean register(UserDTO dto) {
         User user = User.builder()
                 .password(passwordEncoder.encode(dto.getPassword()))
-                .login(dto.getLogin())
+                .login(dto.getEmail())
                 .build();
         userRepository.save(user);
         return true;
