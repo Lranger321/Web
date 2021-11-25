@@ -19,7 +19,7 @@ public class Appliance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    private Long id;
 
     @Column(name = "type", nullable = false)
     private String type;

@@ -7,6 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@ComponentScan({"main.*"})
+@EntityScan("main.*")
+@EnableJpaRepositories("main.*")
 public class Main {
 
     public static void main(String[] args) {

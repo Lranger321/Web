@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @Data
 public class ApplianceDTO {
 
+    private Long id;
     private String type;
     private String brand;
     private String model;

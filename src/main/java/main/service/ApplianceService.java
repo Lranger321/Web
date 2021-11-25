@@ -2,15 +2,18 @@ package main.service;
 
 import main.dto.ApplianceDTO;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ApplianceService {
 
-    void add(ApplianceDTO applianceDTO);
+    ApplianceDTO add(ApplianceDTO applianceDTO);
 
-    void delete(UUID id);
+    void delete(Long id);
 
-    void update(UUID id, ApplianceDTO dto);
+    void update(Long id, ApplianceDTO dto);
 
-    ApplianceDTO getById(UUID id);
+    ApplianceDTO getById(Long id);
+
+    List<ApplianceDTO> findAll();
 }
