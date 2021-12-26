@@ -5,6 +5,7 @@ import main.dao.entity.User;
 import main.dao.repository.UserRepository;
 import main.dto.LoginDTO;
 import main.dto.UserDTO;
+import main.dto.UserResponseDTO;
 import main.service.UserService;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,16 +24,17 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean login(LoginDTO dto) {
+    public UserResponseDTO login(LoginDTO dto) {
         try {
             Authentication auth = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(auth);
         } catch (BadCredentialsException ex) {
             ex.printStackTrace();
-            return false;
+            return null;
         }
-        return true;
+        User user = userRepository.findByLogin(dto.getEmail()).get();
+        return new UserResponseDTO(user);
     }
 
     @Override

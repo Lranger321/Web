@@ -30,6 +30,7 @@ public class ApplianceServiceImpl implements ApplianceService {
                 .orElseThrow(() -> new ApplianceNotFoundException(String.format("Appliance with id [%d] not found", id)));
         Appliance newAppliance = fromDTO(dto);
         newAppliance.setId(appliance.getId());
+        repository.save(newAppliance);
     }
 
     public ApplianceDTO getById(Long id) {

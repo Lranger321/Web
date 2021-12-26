@@ -3,6 +3,7 @@ package main.controller;
 import lombok.AllArgsConstructor;
 import main.dto.LoginDTO;
 import main.dto.UserDTO;
+import main.dto.UserResponseDTO;
 import main.service.UserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +17,13 @@ public class LoginController {
 
     private final UserService userService;
 
-    @PostMapping("/api/users/register")
+    @PostMapping("/api/register")
     public boolean register(@RequestBody UserDTO dto) {
         return userService.register(dto);
     }
 
-    @PostMapping("/api/users/login")
-    public boolean login(@RequestBody LoginDTO dto) {
+    @PostMapping("/api/login")
+    public UserResponseDTO login(@RequestBody LoginDTO dto) {
         return userService.login(dto);
     }
 }

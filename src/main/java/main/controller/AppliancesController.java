@@ -3,8 +3,6 @@ package main.controller;
 import lombok.AllArgsConstructor;
 import main.dto.ApplianceDTO;
 import main.service.ApplianceService;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,23 +39,4 @@ public class AppliancesController {
         service.delete(id);
     }
 
-    @RequestMapping(value = "/api/appliances/", method = RequestMethod.OPTIONS)
-    ResponseEntity<?> collectionOptions() {
-        return ResponseEntity
-                .ok()
-                .allow(HttpMethod.GET,
-                        HttpMethod.POST,
-                        HttpMethod.DELETE,
-                        HttpMethod.PUT,
-                        HttpMethod.OPTIONS)
-                .build();
-    }
-
-    @RequestMapping(value = "/api/appliances/{id}", method = RequestMethod.OPTIONS)
-    ResponseEntity<?> singularOptions(@PathVariable String id) {
-        return ResponseEntity
-                .ok()
-                .allow(HttpMethod.GET)
-                .build();
-    }
 }
